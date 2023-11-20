@@ -7,30 +7,23 @@ import 'swiper/css/scrollbar';
 // import Autoplay from "swiper";
 import { A11y, Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Button } from '../../components/ui/button';
+import { Button } from '@components/ui/button';
+import Link from 'next/link';
 
-const testimonials: TypeTestimonialDisplayProps[] = [
+const testimonials = [
     {
-        "quote": "For the daily test which comprised of the best questions from the topics, Solution of CEE 2021, and important MCQs. They all helped me a lot for my preparation and finally getting 4th rank in CEE 2022. Thank you MedLocus for helping me and many aspirants selflessly♥♥ ",
-        "author": "Gunjan Jha",
-        "about": "CEE-UG 2022 | RANK 4",
+        "desc": "CONCEPTUAL CEE BOOK",
+        "label": "Buy",
+        "href": "/book",
         "image": "gunjan.jpg"
     },
     {
-        "quote": "I'm very thankful to MedLocus, as I've developed my confidence through the exam conducted by MedLocus. Finally I've got IOM, all these are because of your love, support & help. I'm very very thankful to MedLocus😊 Thanks for helping ❤❤ ",
-        "author": "Dilip Sharma",
-        "about": "CEE-UG 2022 | RANK 22",
+        "desc": "ONLINE CLASSES FOR CEE",
+        "label": "View Course",
+        "href": "/courses",
         "image": "dilip.jpg"
     }
 ]
-
-
-export type TypeTestimonialDisplayProps = {
-    quote: string
-    author: string
-    about: string
-    image: string
-}
 
 
 const Testimonials = () => {
@@ -44,18 +37,30 @@ const Testimonials = () => {
                 pagination={{
                     clickable: true,
                 }}
-                // autoplay={{
-                //     delay: 2000, // Set the delay (in milliseconds) between each slide change
-                //     disableOnInteraction: false, // Allow the autoplay to continue even when the user interacts with the Swiper
-                // }}
+                autoplay={{
+                    delay: 2000, // Set the delay (in milliseconds) between each slide change
+                    disableOnInteraction: false, // Allow the autoplay to continue even when the user interacts with the Swiper
+                }}
             >
                 <div className="swipper-wrapper  ">
                     {testimonials.map((t, i) => {
                         return <SwiperSlide className='w-full' key={i}>
-                            <img src='/ss.png' className='w-screen'/>
-                            {/* <div className='border bg-white'>
-                                <Button />
-                            </div> */}
+                            <div className='w-screen lg:h-[80vh] relative'>
+                                <img src='/ss.png' className='w-screen z-10' />
+                                <div className='absolute z-100 top-20 md:top-[20vh] lg:top-[30vh] left-10 md:left-20 flex flex-col gap-5'>
+                                    <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-white">
+                                        {t.desc}
+                                    </h1>
+                                    <div className='flex gap-3 md:gap-5'>
+                                        <Button asChild variant={'secondary'} className='md:text-xl lg:text-2xl xl:text-3xl md:p-6 lg:p-8 '>
+                                            <Link href={'/contact'}>Contact</Link>
+                                        </Button>
+                                        <Button asChild variant={'secondary'} className='md:text-xl lg:text-2xl xl:text-3xl md:p-6 lg:p-8 '>
+                                            <Link href={t.href}>{t.label}</Link>
+                                        </Button>
+                                    </div>
+                                </div>
+                            </div>
                         </SwiperSlide>
                     })}
                 </div>
