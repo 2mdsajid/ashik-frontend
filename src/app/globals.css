@@ -25,3 +25,15 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.navLink {
+  @apply relative tracking-[.5px];
+}
+
+.navLink::after {
+  @apply content-[''] bg-black dark:bg-white h-[2px] w-[0%] left-0 -bottom-[5px] rounded-xl absolute duration-300;
+}
+
+.navLink:hover::after {
+  @apply w-[100%];
+}
